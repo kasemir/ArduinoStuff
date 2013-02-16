@@ -1,0 +1,6 @@
+SerialLCD	KEYWORD1
+clear	KEYWORD2
+backlight	KEYWORD2
+set	KEYWORD2
+print	KEYWORD2
+scroll	KEYWORD2
