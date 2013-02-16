@@ -31,8 +31,6 @@ void setup()
 
 char buf[16];
 
-boolean comment = false;
-
 void loop()
 {
     float deg_c = temp.degC();
@@ -45,18 +43,13 @@ void loop()
     lcd.set(4);
     lcd.print(buf);
 
-    if (comment)
-    else
-    {
-      dtostrf(min, 6, 2, buf);
-      lcd.set(16+4);
-      lcd.print(buf);
-  
-      dtostrf(max, 6, 2, buf);
-      // lcd.set(16+10);
-      lcd.print(buf);
-    }
-    comment = ! comment;
+    dtostrf(min, 6, 2, buf);
+    lcd.set(16+4);
+    lcd.print(buf);
+
+    dtostrf(max, 6, 2, buf);
+    // lcd.set(16+10);
+    lcd.print(buf);
 
     delay(2000);
 }
