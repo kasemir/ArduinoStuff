@@ -1,0 +1,7 @@
+Code for Arduino 'Uno'
+
+* Started out with Arduino 0.22 in 2011, then moved to Arduino 1.5.2 in 2013.
+
+* When checked out into the 'Sketchbook Location' set via
+Arduino preferences, the content of 'libraries/*/examples' should show up
+under 'File/Examples' in the Arduino IDE.
