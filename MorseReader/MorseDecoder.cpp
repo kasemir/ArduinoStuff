@@ -86,11 +86,11 @@ static void initDecodeTree()
     addToTree(&decode_tree, "---..",    "8");
     addToTree(&decode_tree, "----.",    "9");
     addToTree(&decode_tree, "..--..",   "?");
-    addToTree(&decode_tree, "-...-",    " = \n");
-    addToTree(&decode_tree, "-.--.",    "<KN>");
-    addToTree(&decode_tree, ".-...",    "<AS>");
-    addToTree(&decode_tree, "........", "<ERR>\n");
-    addToTree(&decode_tree, "...-.-",   "<SK>");
+    addToTree(&decode_tree, "-...-",    " = ");
+    addToTree(&decode_tree, "-.--.",    "<KN> ");
+    addToTree(&decode_tree, ".-...",    "<AS> ");
+    addToTree(&decode_tree, "........", "<ERR> ");
+    addToTree(&decode_tree, "...-.-",   "<SK> ");
     addToTree(&decode_tree, ".-.-.-",   ". ");
     addToTree(&decode_tree, "--..--",   ", ");
 }

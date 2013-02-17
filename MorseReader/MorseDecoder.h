@@ -1,7 +1,6 @@
 // Copyright 2011 by Kay Kasemir. All Rights Reserved.
 
 #include "Arduino.h"
-#include "BenchTimer.h"
 
 /** Decode ".-.-" into text */
 class MorseDecoder

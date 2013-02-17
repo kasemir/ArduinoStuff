@@ -12,19 +12,29 @@
 #define BUTTON 12
 #define INFO 13
 
-#include "BenchTimer.h"
+#include <SoftwareSerial.h>
+#include "SerialLCD.h"
 
 #include "KeyMonitor.h"
 #include "MorseDecoder.h"
 
 static KeyMonitor key_monitor;
 static MorseDecoder decoder;
+static SerialLCD lcd(DEFAULT_LCD);
 
 void setup()
 {
     Serial.begin(9600);
     Serial.println("Morse Decoder");
 
+    // Sparkfun serial displays its own
+    // startup message.
+    // Wait for that to disappear...
+    delay(2000);
+    lcd.clear();
+    lcd.scroll("Morse Decoder  1");
+    lcd.backlight(30);
+    
     // Provide voltage to button
     pinMode(BUTTON_VOLTAGE, OUTPUT);
     digitalWrite(BUTTON_VOLTAGE, HIGH);
@@ -50,10 +60,15 @@ void loop()
         // Serial.print(c);
         break;
     case END_OF_CHAR:
-        Serial.print(decoder.decode());
+    {
+        const char *decoded = decoder.decode();
+        Serial.print(decoded);
+        lcd.scroll(decoded);
         break;
+    }
     case END_OF_WORD:
         Serial.print(' ');
+        lcd.scroll(" ");
         break;
     }
 }
