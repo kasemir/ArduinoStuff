@@ -12,8 +12,13 @@
 #define BUTTON 12
 #define INFO 13
 
+#include "BenchTimer.h"
+
 #include "KeyMonitor.h"
 #include "MorseDecoder.h"
+
+static KeyMonitor key_monitor;
+static MorseDecoder decoder;
 
 void setup()
 {
@@ -28,9 +33,6 @@ void setup()
     pinMode(BUTTON, INPUT);
     pinMode(INFO, OUTPUT);
 } 
-
-static KeyMonitor key_monitor;
-static MorseDecoder decoder;
 
 void loop()
 {

@@ -1,6 +1,7 @@
 // Copyright 2011 by Kay Kasemir. All Rights Reserved.
 
 #include "Arduino.h"
+#include "BenchTimer.h"
 
 /** Decode ".-.-" into text */
 class MorseDecoder
@@ -8,16 +9,19 @@ class MorseDecoder
     // Buffer for accumulating dits and dahs
     char buf[50];
 
-    // Buffer for error
-    static char error_msg[53];
-    
     // Buffer index, 0 for empty buffer
     int buf_idx;
+    
+    // Buffer for error
+    char error_msg[53];
+    
+    // Clear buffer
+    void clear();
 
 public:
     /** Initialize */
     MorseDecoder();
-     
+         
     /** Add a morse bit to the decoder buffer
      *  morse: '-' or '.'
      */
@@ -32,6 +36,6 @@ public:
      *  morse: "-.-."
      *  Returns: Text "c" or ""
      */
-    static const char *decode(const char *morse);
+    const char *decode(const char *morse);
 };
 
