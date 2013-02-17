@@ -11,10 +11,12 @@
 #include <SerialLCD.h>
 #include <LM34.h>
 
-LM34 temp(DEFAULT_LM34);
-SerialLCD lcd(DEFAULT_LCD);
+// C or F?
+#define CELSIUS
 
-float min, max;
+static LM34 temp(DEFAULT_LM34);
+static SerialLCD lcd(DEFAULT_LCD);
+static float deg, min, max;
 
 void setup()
 {
@@ -22,24 +24,41 @@ void setup()
     Serial.println("Temperature Monitor");
     
     lcd.clear();
+    lcd.print("TempMon 0.1");
+    delay(2000);
+    lcd.clear();
+
+#ifdef CELSIUS
     lcd.print("T  : ??.?? C    ");
+#else
+    lcd.print("T  : ??.?? F    ");
+#endif
     lcd.set(16);
     lcd.print("Rng: ??.?? ??.??");
     delay(1000);
-    min = max = temp.degC();
+    
+    // Set initial values
+    deg = min = max = temp.degC();
 }
 
 char buf[16];
 
 void loop()
 {
-    float deg_c = temp.degC();
-    if (deg_c < min)
-        min = deg_c;
-    if (deg_c > max)
-        max = deg_c;
+#ifdef CELSIUS
+    float n_deg = temp.degC();
+#else
+    float n_deg = temp.degF();
+#endif
+    // Smoothly update displayed value
+    deg = deg * 0.9 + n_deg*0.1;
+    // Min, Max
+    if (deg < min)
+        min = deg;
+    if (deg > max)
+        max = deg;
   
-    dtostrf(deg_c, 6, 2, buf);
+    dtostrf(deg, 6, 2, buf);
     lcd.set(4);
     lcd.print(buf);
 
@@ -51,5 +70,5 @@ void loop()
     // lcd.set(16+10);
     lcd.print(buf);
 
-    delay(2000);
+    delay(5000);
 }
