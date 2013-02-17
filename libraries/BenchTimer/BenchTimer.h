@@ -2,6 +2,8 @@
 //
 // Copyright 2013 by Kay Kasemir. All Rights Reserved.
 
+#ifndef __BENCH_TIMER_H
+#define __BENCH_TIMER_H
 #include <Arduino.h>
 
 class BenchTimer
@@ -37,5 +39,6 @@ public:
      */
      const char *info(long runs);
 };
+#endif
 
 
